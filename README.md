@@ -216,15 +216,11 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## Acknowledgments
 
-- [Intersect MBO](https://www.intersectmbo.org/) - Project facilitation
-- Cardano Community - Governance framework design
 - All Constitutional Committee candidates and voters
 
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/IntersectMBO/cc-election-portal/issues)
-- **Documentation**: [Cardano Docs](https://docs.cardano.org/)
-- **Community**: [Intersect Discord](https://discord.gg/intersect)
 
 ---
 
