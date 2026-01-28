@@ -1,0 +1,262 @@
+{
+    "Consortium": [
+        {
+            "title": "Consortium information",
+            "isRoster": false,
+            "fields": [
+                {
+                    "label": "Consortium Name",
+                    "type": "text",
+                    "name": "consortium-name",
+                    "required": true,
+                    "helper": "Test",
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Bio",
+                    "type": "textarea",
+                    "name": "consortium-bio",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Contact email ",
+                    "type": "email",
+                    "name": "consortium-email",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Consortium profile picture",
+                    "type": "image",
+                    "name": "consortium-pfp",
+                    "required": false,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Cold Credential hash",
+                    "type": "text",
+                    "name": "consortium-hash",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "What type of Cold Credential hash do you have?",
+                    "type": "select",
+                    "name": "consortium-hashtype",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true",
+                    "options": [
+                        "Key hash",
+                        "Script hash"
+                    ]
+                },
+                {
+                    "label": "Constortium Social Media",
+                    "type": "social",
+                    "name": "consortium-some",
+                    "required": false,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "",
+                    "type": "checkbox",
+                    "name": "cc_terms_agreement",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true",
+                    "linkLabel": "Terms and Conditions",
+                    "linkUrl": "terms.html"
+                }
+            ]
+        },
+        {
+            "title": "Members",
+            "isRoster": true,
+            "fields": [
+                {
+                    "label": "Member name",
+                    "type": "text",
+                    "name": "consortium-member-name",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Bio",
+                    "type": "textarea",
+                    "name": "consortium-member-bio",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Social Media",
+                    "type": "social",
+                    "name": "consortium-member-some",
+                    "required": false,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                }
+            ]
+        }
+    ],
+    "Individual": [
+        {
+            "title": "Information",
+            "isRoster": false,
+            "fields": [
+                {
+                    "label": "Name ",
+                    "type": "text",
+                    "name": "individual-name",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Bio",
+                    "type": "textarea",
+                    "name": "individual-bio",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Contact email ",
+                    "type": "email",
+                    "name": "individual-email",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Cold Credential hash",
+                    "type": "text",
+                    "name": "individual-hash",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "What type of Cold Credential hash do you have?",
+                    "type": "select",
+                    "name": "individual-hashtype",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true",
+                    "options": [
+                        "Key hash",
+                        "Script hash"
+                    ]
+                },
+                {
+                    "label": "Profile picture",
+                    "type": "image",
+                    "name": "individual-pfp",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                }
+            ]
+        }
+    ],
+    "Organisation": [
+        {
+            "title": "Organisation Information",
+            "isRoster": false,
+            "fields": [
+                {
+                    "label": "Name of organisation",
+                    "type": "text",
+                    "name": "org-name",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Bio",
+                    "type": "textarea",
+                    "name": "org-bio",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Contact email ",
+                    "type": "email",
+                    "name": "org-email",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Contact person",
+                    "type": "text",
+                    "name": "org-contact",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "Cold Credential hash",
+                    "type": "text",
+                    "name": "org-hash",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                },
+                {
+                    "label": "What type of Cold Credential hash do you have?",
+                    "type": "select",
+                    "name": "org-hashtype",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true",
+                    "options": [
+                        "Key hash",
+                        "Script hash"
+                    ]
+                },
+                {
+                    "label": "Profile picture",
+                    "type": "image",
+                    "name": "org-pfp",
+                    "required": true,
+                    "helper": null,
+                    "logicField": null,
+                    "logicValue": "true"
+                }
+            ]
+        }
+    ]
+}

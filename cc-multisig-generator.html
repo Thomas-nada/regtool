@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multisig Roadmap – Election Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .step-bubble {
+            @apply h-10 w-10 rounded-full text-white flex items-center justify-center font-bold text-sm flex-shrink-0 shadow-lg;
+        }
+
+        /* High-visibility Inputs */
+        .hash-input {
+            @apply mt-2 w-full px-5 py-4 bg-white border-2 rounded-xl text-[12px] font-mono text-slate-900 placeholder:text-slate-400 focus:ring-[14px] outline-none transition-all duration-300 shadow-lg;
+        }
+        .hash-input-cold { @apply border-blue-200 focus:ring-blue-600/10 focus:border-blue-600; }
+        .hash-input-hot { @apply border-orange-200 focus:ring-orange-600/10 focus:border-orange-600; }
+
+        .config-input {
+            @apply w-full px-6 py-4 bg-white border-2 border-slate-300 rounded-2xl text-sm font-bold text-slate-900 focus:ring-[14px] focus:ring-blue-600/10 focus:border-blue-600 outline-none transition-all duration-300 shadow-md;
+        }
+
+        .btn-action {
+            @apply transition-colors flex items-center gap-2 text-[10px] font-black uppercase tracking-widest;
+            color: #64748b !important;
+        }
+        .btn-action:hover {
+            color: #0f172a !important;
+        }
+        .btn-action-light {
+            @apply text-white/70 hover:text-white transition-colors flex items-center gap-2 text-[10px] font-black uppercase tracking-widest;
+        }
+
+        .helper-text {
+            @apply text-[11px] text-slate-500 leading-relaxed mt-2 font-medium;
+        }
+
+        .security-badge {
+            @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest;
+        }
+
+        .tutorial-block {
+            @apply bg-slate-50/80 rounded-2xl p-6 mb-8 border border-slate-200 shadow-sm;
+        }
+
+        .progress-line {
+            @apply h-1.5 flex-1 mx-2 rounded-full bg-slate-200 relative overflow-hidden;
+        }
+        .progress-fill {
+            @apply absolute inset-0 bg-blue-600 transition-all duration-700 ease-in-out;
+        }
+
+        /* Standardized scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Navigation -->
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="hidden sm:block leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-8 pt-12 pb-32">
+
+        <!-- Back Navigation -->
+        <a href="resources.html" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-blue-600 mb-10 transition-colors group">
+            <i class="fas fa-chevron-left mr-3 transform group-hover:-translate-x-1 transition-transform"></i> Back to Resources Hub
+        </a>
+
+        <!-- Header -->
+        <header class="mb-12 text-center md:text-left">
+            <div class="inline-flex items-center gap-3 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full mb-6">
+                <span class="h-1.5 w-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-blue-600 uppercase tracking-widest">Multisig Setup</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-6">Multisig <br><span class="text-blue-600">Roadmap.</span></h1>
+            <p class="text-lg text-slate-500 font-medium max-w-2xl leading-relaxed">Establish a group identity for your Organization or Consortium.</p>
+        </header>
+
+        <!-- Progress Tracker -->
+        <div class="mb-12 flex items-center gap-4 px-4 overflow-x-auto pb-4 scrollbar-hide">
+            <div id="prog-dot-0" class="h-3 w-3 rounded-full bg-blue-600 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-1" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-1" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-2" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-2" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-3" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-3" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-4" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-4" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-5" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-5" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+        </div>
+
+        <!-- Dynamic Step Container -->
+        <div id="step-container" class="space-y-12">
+            <!-- Steps are injected here by JavaScript -->
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="mt-20 flex flex-col sm:flex-row justify-between items-center gap-8">
+            <button id="btn-prev" onclick="changeStep(-1)" class="px-8 py-4 rounded-full bg-white text-slate-500 hover:text-slate-900 border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-sm hover:shadow-md invisible">
+                <i class="fas fa-chevron-left text-[8px]"></i> <span>Back</span>
+            </button>
+            <button id="btn-next" onclick="changeStep(1)" class="px-10 py-4 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/30 hover:-translate-y-0.5">
+                <span>Continue</span> <i class="fas fa-chevron-right text-[8px]"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full px-8 py-20 border-t border-slate-100 bg-white/30 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80">
+                </div>
+                <div class="text-left leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">
+                        Facilitated by <a href="https://www.intersectmbo.org/" target="_blank" class="hover:underline">Intersect</a>
+                    </span>
+                </div>
+            </div>
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="copyToast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="bg-slate-900 text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3 border border-white/10">
+            <i class="fas fa-check-circle text-emerald-400"></i>
+            <span id="toast-msg" class="text-[11px] font-black uppercase tracking-widest">Copied successfully</span>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentStep = 0;
+        const totalSteps = 5;
+        const hashState = {
+            cold: {}, hot: {}, scripts: { cold: '', hot: '' }
+        };
+        const configState = {
+            name: 'ABC',
+            coldMembers: 'Alice, Bob, Carol',
+            coldThreshold: 2,
+            hotMembers: 'Alice, Bob, Carol',
+            hotThreshold: 2
+        };
+
+        const phaseNames = [
+            "Readiness & Setup",
+            "Cold keys",
+            "Cold Script",
+            "Hot keys",
+            "Hot Script",
+            "Submission"
+        ];
+
+        // UI Helpers
+        function showToast(message) {
+            const toast = document.getElementById('copyToast');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => toast.classList.add('opacity-0'), 2000);
+        }
+
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => showToast("Copied successfully"));
+        }
+
+        function downloadFile(filename, elementId) {
+            const content = document.getElementById(elementId).innerText;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename; a.click();
+            window.URL.revokeObjectURL(url);
+            showToast("File downloaded");
+        }
+
+        function getMembers(str) {
+            return str.split(',').map(m => m.trim()).filter(m => m !== "");
+        }
+
+        // Logic for input handling
+        function handleHashInput(type, key, value) {
+            const activeId = document.activeElement.id;
+            const selectionStart = document.activeElement.selectionStart;
+            if (type === 'script') hashState.scripts[key] = value.trim();
+            else hashState[type][key] = value.trim();
+            renderStep();
+            if (activeId) {
+                const el = document.getElementById(activeId);
+                if (el) { el.focus(); el.setSelectionRange(selectionStart, selectionStart); }
+            }
+        }
+
+        function handleConfigChange(key, value) {
+            configState[key] = value;
+            renderStep();
+        }
+
+        function createCodeBlock(id, title, command, downloadFilename = null) {
+            const safeId = id.replace(/[^a-z0-9]/gi, '_');
+            let actions = `<button onclick="copyToClipboard('${safeId}')" class="btn-action"><i class="fas fa-copy"></i> Copy</button>`;
+            if (downloadFilename) {
+                actions += `<button onclick="downloadFile('${downloadFilename}', '${safeId}')" class="btn-action text-blue-500 hover:text-blue-600 ml-6"><i class="fas fa-file-download"></i> Download</button>`;
+            }
+            return `
+                <div class="mt-4 bg-slate-50 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-inner">
+                    <div class="flex justify-between items-center px-6 py-3 bg-slate-100/50 border-b border-slate-200">
+                        <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">${title}</span>
+                        <div class="flex items-center">${actions}</div>
+                    </div>
+                    <pre class="p-6 text-[12px] text-slate-700 overflow-x-auto mono leading-relaxed"><code id="${safeId}">${command}</code></pre>
+                </div>
+            `;
+        }
+
+        // Rendering Logic
+        function renderStep() {
+            const container = document.getElementById('step-container');
+            const coldMembers = getMembers(configState.coldMembers);
+            const hotMembers = getMembers(configState.hotMembers);
+            const ct = Math.min(parseInt(configState.coldThreshold) || 1, coldMembers.length);
+            const ht = Math.min(parseInt(configState.hotThreshold) || 1, hotMembers.length);
+
+            let html = "";
+
+            if (currentStep === 0) {
+                html = `
+                    <header class="mb-12">
+                        <h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2 uppercase">Intro: Readiness & Setup</h2>
+                        <p class="text-lg text-slate-500 font-medium">Configure your team and review the physical safety requirements before starting.</p>
+                    </header>
+
+                    <section class="glass-card rounded-[3rem] p-10 border-emerald-100 shadow-xl mb-12">
+                        <h3 class="text-xl font-black text-emerald-900 mb-6 flex items-center gap-3"><i class="fas fa-user-shield"></i> Safety & Best Practices</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[12px] text-slate-600 font-medium leading-relaxed">
+                            <div class="space-y-4">
+                                <p><strong class="text-slate-900">1. Dedicated USB Media:</strong> Buy a brand-new USB drive specifically for this setup. Label it <span class="text-blue-600 font-bold">"CC SECURE"</span>. Use it only for moving files between your online and offline computers.</p>
+                                <p><strong class="text-slate-900">2. The Air-Gap Principle:</strong> Your "Cold" machine must never have Wi-Fi turned on. Security comes from physical isolation.</p>
+                            </div>
+                            <div class="space-y-4">
+                                <p><strong class="text-slate-900">3. Physical Redundancy:</strong> Back up your private keys (<code class="bg-slate-100 px-1">.skey</code>) to two different USBs and store them in separate buildings.</p>
+                                <p><strong class="text-slate-900">4. Private Room:</strong> Ensure nobody—and no camera—can see your screen while you are generating your master credentials.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="glass-card rounded-[3rem] p-10 shadow-3xl">
+                        <h3 class="text-lg font-black text-slate-900 mb-2 uppercase tracking-widest"><i class="fas fa-users-gear mr-2 text-blue-600"></i> Team Configuration</h3>
+                        <div class="space-y-8 mt-8">
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Organization Acronym</label>
+                                <input type="text" value="${configState.name}" oninput="handleConfigChange('name', this.value)" class="config-input">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="p-8 rounded-[2.5rem] bg-blue-50/50 border border-blue-100">
+                                    <h4 class="text-xs font-black text-blue-700 uppercase mb-6">Master (Cold) Owners</h4>
+                                    <label class="block text-[9px] font-black text-slate-400 uppercase mb-2">Names (Comma separated)</label>
+                                    <input type="text" value="${configState.coldMembers}" oninput="handleConfigChange('coldMembers', this.value)" class="config-input text-xs mb-6">
+                                    <label class="block text-[9px] font-black text-slate-400 uppercase mb-2">Required Signers (Quorum)</label>
+                                    <input type="number" value="${configState.coldThreshold}" oninput="handleConfigChange('coldThreshold', this.value)" class="config-input w-24">
+                                </div>
+                                <div class="p-8 rounded-[2.5rem] bg-orange-50/50 border border-orange-100">
+                                    <h4 class="text-xs font-black text-orange-700 uppercase mb-6">Voting (Hot) Signers</h4>
+                                    <label class="block text-[9px] font-black text-slate-400 uppercase mb-2">Names (Comma separated)</label>
+                                    <input type="text" value="${configState.hotMembers}" oninput="handleConfigChange('hotMembers', this.value)" class="config-input text-xs mb-6">
+                                    <label class="block text-[9px] font-black text-slate-400 uppercase mb-2">Required Signers (Quorum)</label>
+                                    <input type="number" value="${configState.hotThreshold}" oninput="handleConfigChange('hotThreshold', this.value)" class="config-input w-24">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 1) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-blue-100 shadow-3xl">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-6">
+                                <div class="step-bubble bg-blue-600">1</div>
+                                <div>
+                                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 1: Cold Keys</h3>
+                                    <p class="text-slate-400 font-medium text-sm mt-1">Foundational identity generation (OFFLINE).</p>
+                                </div>
+                            </div>
+                            <span class="security-badge bg-rose-100 text-rose-600 border border-rose-200"><i class="fas fa-lock"></i> Offline Mandatory</span>
+                        </div>
+
+                        <div class="tutorial-block border-blue-100 bg-blue-50/30">
+                            <h4 class="text-xs font-black uppercase text-blue-900 mb-2">Instructional Context:</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">Each owner generates a public/private key pair on an offline computer. The <code class="bg-white px-1">.skey</code> is your secret signature. The hash is your public ID.</p>
+                        </div>
+
+                        <div class="space-y-12">
+                            ${coldMembers.map(m => {
+                                const currentHash = hashState.cold[m] || '';
+                                return `
+                                    <div class="bg-white/60 p-8 rounded-[2.5rem] border border-blue-100">
+                                        <h4 class="font-black text-blue-700 uppercase tracking-widest text-xs mb-6"><i class="fas fa-snowflake mr-2"></i> ${m}'s Cold Keys</h4>
+                                        ${createCodeBlock(`cold_gen_${m}`, `Key Gen`, `cardano-cli latest governance committee key-gen-cold \\\n  --cold-verification-key-file ${m.toLowerCase()}-cold.vkey \\\n  --cold-signing-key-file ${m.toLowerCase()}-cold.skey`)}
+                                        <p class="helper-text mt-8 mb-4 font-bold text-slate-600">Extract the public hash:</p>
+                                        ${createCodeBlock(`cold_hash_cmd_${m}`, `Get Hash`, `cardano-cli latest governance committee key-hash --verification-key-file ${m.toLowerCase()}-cold.vkey`)}
+                                        <div class="mt-8 p-6 bg-white border-2 border-blue-100 rounded-3xl shadow-sm">
+                                            <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">Paste resulting hash for ${m}:</p>
+                                            <input type="text" id="input_cold_${m.toLowerCase().replace(/\s/g, '_')}" class="hash-input hash-input-cold" placeholder="e.g. 8d6ae7dd..." value="${currentHash}" oninput="handleHashInput('cold', '${m}', this.value)">
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 2) {
+                const scriptJson = { type: "atLeast", required: ct, scripts: coldMembers.map(m => ({ type: "sig", keyHash: hashState.cold[m] || `PASTE_${m.toUpperCase()}_HASH` })) };
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-blue-100 shadow-3xl">
+                        <div class="flex items-center gap-6 mb-12">
+                            <div class="step-bubble bg-blue-600">2</div>
+                            <div>
+                                <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 2: Cold Script</h3>
+                                <p class="text-slate-400 font-medium text-sm mt-1">Formalizing the group rulebook.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-block border-blue-100 bg-blue-50/30">
+                            <h4 class="text-xs font-black uppercase text-blue-900 mb-2">What is the Cold Script?</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">This script proves that <strong>${ct} of your owners</strong> must sign for any cold-level administrative changes.</p>
+                        </div>
+
+                        ${createCodeBlock('cold_script_json', 'cold.script', JSON.stringify(scriptJson, null, 2), 'cold.script')}
+
+                        <div class="mt-12 p-10 bg-blue-600 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
+                            <h4 class="text-xl font-black mb-4 tracking-tight"><i class="fas fa-barcode mr-2"></i> Hash the Script</h4>
+                            <p class="text-xs text-blue-100 mb-6 font-medium">Download the script, move it via USB to your offline computer, and run this:</p>
+                            ${createCodeBlock('hash_cold_script', 'Script Hash Command', `cardano-cli hash script --script-file cold.script`)}
+                            <p class="text-[10px] font-black text-blue-100 uppercase tracking-widest mt-8 mb-3">Paste Resulting Cold Script Hash:</p>
+                            <input type="text" id="input_script_cold" class="hash-input mt-0 bg-white text-slate-900 border-white focus:ring-white/20" placeholder="e.g. ad31d247..." value="${hashState.scripts.cold}" oninput="handleHashInput('script', 'cold', this.value)">
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 3) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-orange-100 shadow-3xl">
+                        <div class="flex items-center justify-between mb-12">
+                            <div class="flex items-center gap-6">
+                                <div class="step-bubble bg-orange-600">3</div>
+                                <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 3: Hot Keys</h3>
+                            </div>
+                            <span class="security-badge bg-orange-100 text-orange-600 border border-orange-200"><i class="fas fa-wifi"></i> Online Operational</span>
+                        </div>
+
+                        <div class="tutorial-block border-orange-100 bg-orange-50/30">
+                            <h4 class="text-xs font-black uppercase text-orange-900 mb-2">Operating Daily:</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">Generate keys for the operators who sign votes every day. These are safe to use on internet-connected computers.</p>
+                        </div>
+
+                        <div class="space-y-12">
+                            ${hotMembers.map(m => {
+                                const currentHash = hashState.hot[m] || '';
+                                return `
+                                    <div class="bg-white/60 p-8 rounded-[2.5rem] border border-orange-100">
+                                        <h4 class="font-black text-orange-700 uppercase tracking-widest text-xs mb-6"><i class="fas fa-bolt"></i> ${m}'s Hot Identity</h4>
+                                        ${createCodeBlock(`hot_gen_${m}`, `Hot Key Gen`, `cardano-cli latest governance committee key-gen-hot \\\n  --verification-key-file ${m.toLowerCase()}-hot.vkey \\\n  --signing-key-file ${m.toLowerCase()}-hot.skey`)}
+                                        <p class="helper-text mt-8 mb-4 font-bold text-slate-600">Get the Hot fingerprint:</p>
+                                        ${createCodeBlock(`hot_hash_cmd_${m}`, `Get Hash`, `cardano-cli latest governance committee key-hash --verification-key-file ${m.toLowerCase()}-hot.vkey`)}
+                                        <div class="mt-8 p-6 bg-white border-2 border-orange-100 rounded-3xl shadow-sm">
+                                            <p class="text-[10px] font-black text-orange-600 uppercase tracking-widest mb-3 flex items-center gap-2">Paste Hot Hash for ${m}:</p>
+                                            <input type="text" id="input_hot_${m.toLowerCase().replace(/\s/g, '_')}" class="hash-input hash-input-hot" placeholder="e.g. d775c28b..." value="${currentHash}" oninput="handleHashInput('hot', '${m}', this.value)">
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 4) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-orange-100 shadow-3xl">
+                        <div class="flex items-center gap-6 mb-12">
+                            <div class="step-bubble bg-orange-600">4</div>
+                            <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 4: Hot Script</h3>
+                        </div>
+
+                        <div class="tutorial-block border-orange-100 bg-orange-50/30">
+                            <h4 class="text-xs font-black uppercase text-orange-900 mb-2">The Voting Policy:</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">This script defines that <strong>${ht} of your ${hotMembers.length} signers</strong> are required for a daily vote.</p>
+                        </div>
+
+                        ${createCodeBlock('hot_script_json', 'hot.script', JSON.stringify({ type: "atLeast", required: ht, scripts: hotMembers.map(m => ({ type: "sig", keyHash: hashState.hot[m] || `PASTE_HOT_HASH_ABOVE` })) }, null, 2), 'hot.script')}
+
+                        <div class="mt-10 p-10 bg-slate-900 rounded-[3rem] text-white shadow-xl border-4 border-orange-400/10">
+                            <h4 class="text-xl font-black mb-4 tracking-tight"><i class="fas fa-barcode mr-2 text-orange-400"></i> Get Operational ID</h4>
+                            ${createCodeBlock('hash_hot_script', 'Hot Hash Command', `cardano-cli hash script --script-file hot.script`)}
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-8 mb-3">Paste Resulting Hot Script Hash:</p>
+                            <input type="text" id="input_script_hot" class="hash-input mt-0 bg-white text-slate-900 border-white placeholder:text-slate-400" placeholder="e.g. f5d42214..." value="${hashState.scripts.hot}" oninput="handleHashInput('script', 'hot', this.value)">
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 5) {
+                const csh = hashState.scripts.cold || 'COLD_HASH';
+                const hsh = hashState.scripts.hot || 'HOT_HASH';
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-slate-200 shadow-3xl">
+                        <div class="flex items-center gap-6 mb-12">
+                            <div class="step-bubble bg-slate-900">5</div>
+                            <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 5: Submission</h3>
+                        </div>
+
+                        <div class="tutorial-block border-emerald-100 bg-emerald-50/50">
+                            <h4 class="text-xs font-black uppercase text-emerald-900 mb-2 text-center"><i class="fas fa-truck-moving mr-2"></i> The USB "Handshake" Process</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium mb-6 text-center">Move <code class="bg-white px-1">tx.raw</code> to your offline computer using your dedicated USB to perform secure signing.</p>
+                        </div>
+
+                        <div class="space-y-12">
+                            <div class="bg-white/40 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">A. Linking Certificate</h4>
+                                ${createCodeBlock('auth_cert', 'Issue Cert', `cardano-cli latest governance committee create-hot-key-authorization-certificate \\\n  --cold-script-hash ${csh} \\\n  --hot-script-hash ${hsh} \\\n  --out-file cc-authorization.cert`)}
+                            </div>
+
+                            <div class="bg-white/40 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">B. Assemble Transaction Body</h4>
+                                ${createCodeBlock('tx_build', 'Build TX', `cardano-cli latest transaction build \\\n  --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \\\n  --change-address "$(< payment.addr)" \\\n  --certificate-file cc-authorization.cert \\\n  --certificate-script-file cold.script \\\n  --witness-override ${coldMembers.length + 1} \\\n  --out-file tx.raw`)}
+                            </div>
+
+                            <div class="bg-emerald-50/50 p-10 rounded-[3rem] border border-emerald-100 shadow-sm">
+                                <h4 class="font-black text-emerald-900 mb-2 uppercase tracking-widest text-xs flex items-center justify-between">
+                                    <span>C. Multi-Party Signing (OFFLINE)</span>
+                                    <span class="bg-emerald-100 px-3 py-1 rounded-full text-[8px] text-emerald-600 border border-emerald-200">USB REQUIRED</span>
+                                </h4>
+                                ${createCodeBlock('wit_pay', 'Fee Payer Signature', `cardano-cli latest transaction witness --tx-body-file tx.raw --signing-key-file payment.skey --out-file payment.witness`)}
+                                ${coldMembers.map(m => createCodeBlock(`wit_${m}`, `${m}'s Secret Signature`, `cardano-cli latest transaction witness --tx-body-file tx.raw --signing-key-file ${m.toLowerCase()}-cold.skey --out-file ${m.toLowerCase()}.witness`)).join('')}
+                            </div>
+
+                            <div class="bg-white/40 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">D. Submit & Broadcast</h4>
+                                ${createCodeBlock('assemble', 'Assemble Final', `cardano-cli latest transaction assemble --tx-body-file tx.raw --witness-file payment.witness ${coldMembers.map(m => `--witness-file ${m.toLowerCase()}.witness`).join(' ')} --out-file tx.signed`)}
+                                <div class="mt-8 pt-6 border-t border-slate-100">
+                                    <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-4 flex items-center gap-2"><i class="fas fa-broadcast-tower animate-pulse"></i> Ready for Network</p>
+                                    ${createCodeBlock('submit', 'Submit Transaction', `cardano-cli latest transaction submit --tx-file tx.signed`)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+            updateControls();
+        }
+
+        function updateControls() {
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+
+            if (currentStep > 0) {
+                btnPrev.classList.remove('invisible');
+                btnPrev.querySelector('span').innerText = `Back to ${phaseNames[currentStep - 1]}`;
+            } else {
+                btnPrev.classList.add('invisible');
+            }
+
+            if (currentStep < totalSteps) {
+                btnNext.querySelector('span').innerText = `Next: ${phaseNames[currentStep + 1]}`;
+                btnNext.className = "px-10 py-4 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/30 hover:-translate-y-0.5";
+            } else {
+                btnNext.querySelector('span').innerText = `Finalize Roadmap`;
+                btnNext.className = "px-10 py-4 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-emerald-600/20 hover:shadow-emerald-600/30 hover:-translate-y-0.5";
+            }
+
+            // Progress Tracker Dots
+            for (let i = 0; i <= totalSteps; i++) {
+                const dot = document.getElementById(`prog-dot-${i}`);
+                if (dot) {
+                    dot.classList.toggle('bg-blue-600', i <= currentStep);
+                    dot.classList.toggle('bg-slate-200', i > currentStep);
+                    dot.classList.toggle('scale-150', i === currentStep);
+                    dot.classList.toggle('shadow-[0_0_15px_rgba(37,99,235,0.5)]', i === currentStep);
+                }
+                const fill = document.getElementById(`prog-fill-${i}`);
+                if (fill) fill.classList.toggle('w-full', i <= currentStep);
+            }
+        }
+
+        function changeStep(dir) {
+            if (currentStep === totalSteps && dir === 1) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showToast("Roadmap completed successfully");
+                return;
+            }
+            currentStep = Math.max(0, Math.min(totalSteps, currentStep + dir));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderStep();
+        }
+
+        // Initialize
+        window.onload = renderStep;
+    </script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Credentials Roadmap – Election Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .step-bubble {
+            @apply h-10 w-10 rounded-full text-white flex items-center justify-center font-bold text-sm flex-shrink-0 shadow-lg;
+        }
+
+        .btn-action {
+            @apply transition-colors flex items-center gap-2 text-[10px] font-black uppercase tracking-widest;
+            color: #64748b !important;
+        }
+        .btn-action:hover {
+            color: #0f172a !important;
+        }
+
+        .helper-text {
+            @apply text-[11px] text-slate-500 leading-relaxed mt-2 font-medium;
+        }
+
+        .security-badge {
+            @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest;
+        }
+
+        .tutorial-block {
+            @apply bg-slate-50/80 rounded-2xl p-6 mb-8 border border-slate-200 shadow-sm;
+        }
+
+        .progress-line {
+            @apply h-1.5 flex-1 mx-2 rounded-full bg-slate-200 relative overflow-hidden;
+        }
+        .progress-fill {
+            @apply absolute inset-0 bg-blue-600 transition-all duration-700 ease-in-out;
+        }
+
+        /* Standardized scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Navigation -->
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="hidden sm:block leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-8 pt-12 pb-32">
+
+        <!-- Back Navigation -->
+        <a href="resources.html" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-blue-600 mb-10 transition-colors group">
+            <i class="fas fa-chevron-left mr-3 transform group-hover:-translate-x-1 transition-transform"></i> Back to Resources Hub
+        </a>
+
+        <!-- Header -->
+        <header class="mb-12 text-center md:text-left">
+            <div class="inline-flex items-center gap-3 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full mb-6">
+                <span class="h-1.5 w-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-blue-600 uppercase tracking-widest">Individual Setup</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-6">Individual <br><span class="text-blue-600">Roadmap.</span></h1>
+            <p class="text-lg text-slate-500 font-medium max-w-2xl leading-relaxed">Standard Ed25519 key setup for individual Constitutional Committee members.</p>
+        </header>
+
+        <!-- Progress Tracker -->
+        <div class="mb-12 flex items-center gap-4 px-4 overflow-x-auto pb-4 scrollbar-hide">
+            <div id="prog-dot-0" class="h-3 w-3 rounded-full bg-blue-600 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-1" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-1" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-2" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-2" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-3" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-3" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+            <div class="progress-line"><div id="prog-fill-4" class="progress-fill w-0"></div></div>
+            <div id="prog-dot-4" class="h-3 w-3 rounded-full bg-slate-200 flex-shrink-0 transition-all duration-500"></div>
+        </div>
+
+        <!-- Dynamic Step Container -->
+        <div id="step-container" class="space-y-12">
+            <!-- Steps are injected here by JavaScript -->
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="mt-20 flex flex-col sm:flex-row justify-between items-center gap-8">
+            <button id="btn-prev" onclick="changeStep(-1)" class="px-8 py-4 rounded-full bg-white text-slate-500 hover:text-slate-900 border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-sm hover:shadow-md invisible">
+                <i class="fas fa-chevron-left text-[8px]"></i> <span>Back</span>
+            </button>
+            <button id="btn-next" onclick="changeStep(1)" class="px-10 py-4 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/30 hover:-translate-y-0.5">
+                <span>Continue</span> <i class="fas fa-chevron-right text-[8px]"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full px-8 py-20 border-t border-slate-100 bg-white/30 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80">
+                </div>
+                <div class="text-left leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">
+                        Facilitated by <a href="https://www.intersectmbo.org/" target="_blank" class="hover:underline">Intersect</a>
+                    </span>
+                </div>
+            </div>
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="copyToast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="bg-slate-900 text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-3 border border-white/10">
+            <i class="fas fa-check-circle text-emerald-400"></i>
+            <span id="toast-msg" class="text-[11px] font-black uppercase tracking-widest">Copied successfully</span>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentStep = 0;
+        const totalSteps = 4;
+
+        const phaseNames = [
+            "Introduction",
+            "Cold Keys",
+            "Hot Keys",
+            "Authorization",
+            "Submission"
+        ];
+
+        // UI Helpers
+        function showToast(message) {
+            const toast = document.getElementById('copyToast');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => toast.classList.add('opacity-0'), 2000);
+        }
+
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => showToast("Copied successfully"));
+        }
+
+        function createCodeBlock(id, title, command) {
+            const safeId = id.replace(/[^a-z0-9]/gi, '_');
+            return `
+                <div class="mt-4 bg-slate-50 rounded-2xl overflow-hidden border-2 border-slate-100 shadow-inner">
+                    <div class="flex justify-between items-center px-6 py-3 bg-slate-100/50 border-b border-slate-200">
+                        <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest">${title}</span>
+                        <button onclick="copyToClipboard('${safeId}')" class="btn-action"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                    <pre class="p-6 text-[12px] text-slate-700 overflow-x-auto mono leading-relaxed"><code id="${safeId}">${command}</code></pre>
+                </div>
+            `;
+        }
+
+        function createOutputBlock(title, content) {
+            return `
+                <div class="mt-4 bg-slate-900 rounded-2xl overflow-hidden border border-slate-700">
+                    <div class="px-6 py-3 bg-slate-800 border-b border-slate-700">
+                        <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">${title}</span>
+                    </div>
+                    <pre class="p-6 text-[11px] text-slate-300 overflow-x-auto mono leading-relaxed">${content}</pre>
+                </div>
+            `;
+        }
+
+        // Rendering Logic
+        function renderStep() {
+            const container = document.getElementById('step-container');
+            let html = "";
+
+            if (currentStep === 0) {
+                html = `
+                    <header class="mb-12">
+                        <h2 class="text-3xl font-black text-slate-900 tracking-tight mb-2 uppercase">Intro: Understanding Ed25519 Keys</h2>
+                        <p class="text-lg text-slate-500 font-medium">Learn the fundamentals before generating your credentials.</p>
+                    </header>
+
+                    <section class="glass-card rounded-[3rem] p-10 border-emerald-100 shadow-xl mb-12">
+                        <h3 class="text-xl font-black text-emerald-900 mb-6 flex items-center gap-3"><i class="fas fa-shield-halved"></i> The Credential Model</h3>
+                        <div class="text-[13px] text-slate-600 font-medium leading-relaxed space-y-4">
+                            <p>The most basic setup for a Constitutional Committee member uses <strong class="text-slate-900">Ed25519 keys</strong>. An Ed25519 key pair includes:</p>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li><strong class="text-slate-900">Private Key (.skey)</strong> – Used to create digital signatures</li>
+                                <li><strong class="text-slate-900">Public Key (.vkey)</strong> – Used to verify those signatures</li>
+                            </ul>
+                            <p class="mt-4">You will generate <strong class="text-blue-600">two sets</strong> of keys:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                <div class="p-6 bg-blue-50/50 rounded-2xl border border-blue-100">
+                                    <h4 class="text-xs font-black text-blue-700 uppercase mb-2"><i class="fas fa-snowflake mr-2"></i> Cold Keys</h4>
+                                    <p class="text-[11px] text-slate-600">Your primary identity. Generated and stored OFFLINE on an air-gapped machine. Never expose these to the internet.</p>
+                                </div>
+                                <div class="p-6 bg-orange-50/50 rounded-2xl border border-orange-100">
+                                    <h4 class="text-xs font-black text-orange-700 uppercase mb-2"><i class="fas fa-bolt mr-2"></i> Hot Keys</h4>
+                                    <p class="text-[11px] text-slate-600">Your operational keys for daily voting. Can be used on internet-connected machines. If compromised, you can rotate them.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="glass-card rounded-[3rem] p-10 border-slate-200 shadow-xl">
+                        <h3 class="text-xl font-black text-slate-900 mb-6 flex items-center gap-3"><i class="fas fa-user-shield"></i> Security Best Practices</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[12px] text-slate-600 font-medium leading-relaxed">
+                            <div class="space-y-4">
+                                <p><strong class="text-slate-900">1. Dedicated USB Media:</strong> Buy a brand-new USB drive specifically for this setup. Label it <span class="text-blue-600 font-bold">"CC SECURE"</span>.</p>
+                                <p><strong class="text-slate-900">2. Air-Gap Principle:</strong> Your cold machine must never have Wi-Fi enabled. Security comes from physical isolation.</p>
+                            </div>
+                            <div class="space-y-4">
+                                <p><strong class="text-slate-900">3. Physical Redundancy:</strong> Back up your private keys to two USBs stored in separate physical locations.</p>
+                                <p><strong class="text-slate-900">4. Private Room:</strong> Ensure no cameras or observers can see your screen during key generation.</p>
+                            </div>
+                        </div>
+                    </section>
+                `;
+            } else if (currentStep === 1) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-blue-100 shadow-3xl">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-6">
+                                <div class="step-bubble bg-blue-600">1</div>
+                                <div>
+                                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 1: Cold Keys</h3>
+                                    <p class="text-slate-400 font-medium text-sm mt-1">Generate your primary identity (OFFLINE).</p>
+                                </div>
+                            </div>
+                            <span class="security-badge bg-rose-100 text-rose-600 border border-rose-200"><i class="fas fa-lock"></i> Offline Mandatory</span>
+                        </div>
+
+                        <div class="tutorial-block border-blue-100 bg-blue-50/30">
+                            <h4 class="text-xs font-black uppercase text-blue-900 mb-2">About Cold Keys:</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">Run this command on your air-gapped machine. The <code class="bg-white px-1">.skey</code> is your secret—never share it. The key hash is your public identifier used on-chain.</p>
+                        </div>
+
+                        <div class="bg-white/60 p-8 rounded-[2.5rem] border border-blue-100 mb-8">
+                            <h4 class="font-black text-blue-700 uppercase tracking-widest text-xs mb-6"><i class="fas fa-key mr-2"></i> Generate Cold Key Pair</h4>
+                            ${createCodeBlock('cold_gen', 'Key Generation', `cardano-cli latest governance committee key-gen-cold \\
+  --cold-verification-key-file cc-cold.vkey \\
+  --cold-signing-key-file cc-cold.skey`)}
+
+                            <p class="helper-text mt-8 mb-2 font-bold text-slate-600">Example output files:</p>
+                            ${createOutputBlock('cc-cold.vkey', `{
+    "type": "ConstitutionalCommitteeColdVerificationKey_ed25519",
+    "description": "Constitutional Committee Cold Verification Key",
+    "cborHex": "58201e2c2038e3466fdc7b8e1b302b15db28427adb5467b9df09e736e713d7371d04"
+}`)}
+                            ${createOutputBlock('cc-cold.skey', `{
+    "type": "ConstitutionalCommitteeColdSigningKey_ed25519",
+    "description": "Constitutional Committee Cold Signing Key",
+    "cborHex": "5820ffafa2978add44508e2d9d704faf54bccd41fad5f5c312b268c48d32a99c1099"
+}`)}
+                        </div>
+
+                        <div class="bg-white/60 p-8 rounded-[2.5rem] border border-blue-100">
+                            <h4 class="font-black text-blue-700 uppercase tracking-widest text-xs mb-6"><i class="fas fa-fingerprint mr-2"></i> Generate Cold Key Hash</h4>
+                            <p class="text-[11px] text-slate-600 mb-4 font-medium">The key hash identifies you on-chain and is used in governance actions to add/remove CC members.</p>
+                            ${createCodeBlock('cold_hash', 'Get Key Hash', `cardano-cli latest governance committee key-hash \\
+  --verification-key-file cc-cold.vkey > cc-key.hash`)}
+
+                            <div class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                                <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-1">Example Output (cc-key.hash):</p>
+                                <code class="text-[12px] mono text-slate-700">89181f26b47c3d3b6b127df163b15b74b45bba7c3b7a1d185c05c2de</code>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 2) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-orange-100 shadow-3xl">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-6">
+                                <div class="step-bubble bg-orange-600">2</div>
+                                <div>
+                                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 2: Hot Keys</h3>
+                                    <p class="text-slate-400 font-medium text-sm mt-1">Generate your operational voting keys.</p>
+                                </div>
+                            </div>
+                            <span class="security-badge bg-orange-100 text-orange-600 border border-orange-200"><i class="fas fa-wifi"></i> Online Allowed</span>
+                        </div>
+
+                        <div class="tutorial-block border-orange-100 bg-orange-50/30">
+                            <h4 class="text-xs font-black uppercase text-orange-900 mb-2">About Hot Keys:</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">After the Chang hardfork, CC members must generate hot keys and submit an Authorization Certificate. Hot keys are used for daily voting operations.</p>
+                        </div>
+
+                        <div class="bg-white/60 p-8 rounded-[2.5rem] border border-orange-100">
+                            <h4 class="font-black text-orange-700 uppercase tracking-widest text-xs mb-6"><i class="fas fa-bolt mr-2"></i> Generate Hot Key Pair</h4>
+                            ${createCodeBlock('hot_gen', 'Key Generation', `cardano-cli latest governance committee key-gen-hot \\
+  --verification-key-file cc-hot.vkey \\
+  --signing-key-file cc-hot.skey`)}
+
+                            <p class="helper-text mt-8 mb-2 font-bold text-slate-600">Example output files:</p>
+                            ${createOutputBlock('cc-hot.vkey', `{
+    "type": "ConstitutionalCommitteeHotVerificationKey_ed25519",
+    "description": "Constitutional Committee Hot Verification Key",
+    "cborHex": "5820d206b8619a933a099e3190afe0a81cb485af66c3d9297f4b109da507ad5259c0"
+}`)}
+                            ${createOutputBlock('cc-hot.skey', `{
+    "type": "ConstitutionalCommitteeHotSigningKey_ed25519",
+    "description": "Constitutional Committee Hot Signing Key",
+    "cborHex": "5820727625958a2b484d6797cb00079cdf71199555ce1db67bd1a868665bac1099c8"
+}`)}
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 3) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-emerald-100 shadow-3xl">
+                        <div class="flex items-center gap-6 mb-8">
+                            <div class="step-bubble bg-emerald-600">3</div>
+                            <div>
+                                <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 3: Authorization Certificate</h3>
+                                <p class="text-slate-400 font-medium text-sm mt-1">Link your hot credential to your cold identity.</p>
+                            </div>
+                        </div>
+
+                        <div class="tutorial-block border-emerald-100 bg-emerald-50/30">
+                            <h4 class="text-xs font-black uppercase text-emerald-900 mb-2">Why Authorization?</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">The Authorization Certificate allows the hot credential to act on behalf of the cold credential by signing transactions where votes are cast. If the hot credential is compromised, generate a new one and issue a new Authorization Certificate—this overrides the previous one on-chain.</p>
+                        </div>
+
+                        <div class="bg-white/60 p-8 rounded-[2.5rem] border border-emerald-100">
+                            <h4 class="font-black text-emerald-700 uppercase tracking-widest text-xs mb-6"><i class="fas fa-link mr-2"></i> Create Authorization Certificate</h4>
+                            ${createCodeBlock('auth_cert', 'Issue Certificate', `cardano-cli latest governance committee create-hot-key-authorization-certificate \\
+  --cold-verification-key-file cc-cold.vkey \\
+  --hot-verification-key-file cc-hot.vkey \\
+  --out-file cc-authorization.cert`)}
+
+                            <p class="helper-text mt-8 mb-2 font-bold text-slate-600">Example output:</p>
+                            ${createOutputBlock('cc-authorization.cert', `{
+    "type": "CertificateConway",
+    "description": "Constitutional Committee Hot Key Registration Certificate",
+    "cborHex": "830e8200581cb3745a0b5231017ab5c02ad45b55f4d50940fb127120455bcaedd53a8200581cdeaf2ae047657b1ad4094bb99664d160a7cd8c539b1ed3d44ffb8de9"
+}`)}
+                        </div>
+                    </div>
+                `;
+            } else if (currentStep === 4) {
+                html = `
+                    <div class="glass-card rounded-[3.5rem] p-10 md:p-14 border-slate-200 shadow-3xl">
+                        <div class="flex items-center gap-6 mb-12">
+                            <div class="step-bubble bg-slate-900">4</div>
+                            <h3 class="text-3xl font-black text-slate-900 tracking-tight">Phase 4: Submit Transaction</h3>
+                        </div>
+
+                        <div class="tutorial-block border-slate-200 bg-slate-50/50">
+                            <h4 class="text-xs font-black uppercase text-slate-700 mb-2"><i class="fas fa-truck-moving mr-2"></i> The USB Transfer Process</h4>
+                            <p class="text-[11px] text-slate-600 leading-relaxed font-medium">Build the transaction on your online machine, then move <code class="bg-white px-1">tx.raw</code> to your offline machine via USB for signing with your cold key.</p>
+                        </div>
+
+                        <div class="space-y-8">
+                            <div class="bg-white/40 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">A. Build Transaction (Online)</h4>
+                                ${createCodeBlock('tx_build', 'Build TX', `cardano-cli latest transaction build \\
+  --tx-in "$(cardano-cli query utxo --address "$(< payment.addr)" --output-json | jq -r 'keys[0]')" \\
+  --change-address "$(< payment.addr)" \\
+  --certificate-file cc-authorization.cert \\
+  --witness-override 2 \\
+  --out-file tx.raw`)}
+                            </div>
+
+                            <div class="bg-blue-50/50 p-8 rounded-[2.5rem] border border-blue-100 shadow-sm">
+                                <h4 class="font-black text-blue-900 mb-2 uppercase tracking-widest text-xs flex items-center justify-between">
+                                    <span>B. Sign Transaction (OFFLINE)</span>
+                                    <span class="bg-blue-100 px-3 py-1 rounded-full text-[8px] text-blue-600 border border-blue-200">USB REQUIRED</span>
+                                </h4>
+                                <p class="text-[11px] text-slate-600 mb-4 font-medium">Move tx.raw to your air-gapped machine and sign with both keys.</p>
+                                ${createCodeBlock('tx_sign', 'Sign TX', `cardano-cli latest transaction sign \\
+  --tx-body-file tx.raw \\
+  --signing-key-file payment.skey \\
+  --signing-key-file cc-cold.skey \\
+  --out-file tx.signed`)}
+                            </div>
+
+                            <div class="bg-white/40 p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">C. Submit Transaction (Online)</h4>
+                                <p class="text-[11px] text-slate-600 mb-4 font-medium">Move tx.signed back to your online machine and submit to the network.</p>
+                                ${createCodeBlock('tx_submit', 'Submit TX', `cardano-cli latest transaction submit \\
+  --tx-file tx.signed`)}
+                                <div class="mt-8 pt-6 border-t border-slate-100">
+                                    <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-2 flex items-center gap-2"><i class="fas fa-check-circle"></i> Success</p>
+                                    <p class="text-[11px] text-slate-500 font-medium">Once submitted, your hot credential is authorized to vote on behalf of your cold credential.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+            updateControls();
+        }
+
+        function updateControls() {
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+
+            if (currentStep > 0) {
+                btnPrev.classList.remove('invisible');
+                btnPrev.querySelector('span').innerText = `Back to ${phaseNames[currentStep - 1]}`;
+            } else {
+                btnPrev.classList.add('invisible');
+            }
+
+            if (currentStep < totalSteps) {
+                btnNext.querySelector('span').innerText = `Next: ${phaseNames[currentStep + 1]}`;
+                btnNext.className = "px-10 py-4 rounded-full bg-blue-600 text-white hover:bg-blue-700 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/30 hover:-translate-y-0.5";
+            } else {
+                btnNext.querySelector('span').innerText = `Finalize Roadmap`;
+                btnNext.className = "px-10 py-4 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 font-black text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-emerald-600/20 hover:shadow-emerald-600/30 hover:-translate-y-0.5";
+            }
+
+            // Progress Tracker Dots
+            for (let i = 0; i <= totalSteps; i++) {
+                const dot = document.getElementById(`prog-dot-${i}`);
+                if (dot) {
+                    dot.classList.toggle('bg-blue-600', i <= currentStep);
+                    dot.classList.toggle('bg-slate-200', i > currentStep);
+                    dot.classList.toggle('scale-150', i === currentStep);
+                    dot.classList.toggle('shadow-[0_0_15px_rgba(37,99,235,0.5)]', i === currentStep);
+                }
+                const fill = document.getElementById(`prog-fill-${i}`);
+                if (fill) fill.classList.toggle('w-full', i <= currentStep);
+            }
+        }
+
+        function changeStep(dir) {
+            if (currentStep === totalSteps && dir === 1) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showToast("Roadmap completed successfully");
+                return;
+            }
+            currentStep = Math.max(0, Math.min(totalSteps, currentStep + dir));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderStep();
+        }
+
+        // Initialize
+        window.onload = renderStep;
+    </script>
+</body>
+</html>

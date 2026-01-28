@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Portal – Constitutional Committee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .btn-primary {
+            @apply px-10 py-5 bg-blue-600 text-white font-black uppercase tracking-widest text-[10px] rounded-2xl shadow-2xl shadow-blue-900/20 hover:bg-blue-700 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center gap-4;
+        }
+
+        .btn-secondary {
+            @apply px-10 py-5 bg-white text-slate-900 font-black uppercase tracking-widest text-[10px] rounded-2xl shadow-xl border border-slate-200 hover:bg-slate-50 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center gap-4;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- DYNAMIC ELECTION STATUS BANNER -->
+    <div id="status-banner" class="hidden">
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-3">
+            <i id="status-icon" class="fas fa-circle-notch fa-spin text-xs"></i>
+            <span id="status-text" class="font-black text-[10px] uppercase tracking-[0.3em]">Synchronizing Registry Status...</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="hidden sm:block">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN HERO SECTION -->
+    <main class="max-w-7xl mx-auto px-8 pt-20 pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+            
+            <!-- LEFT CONTENT -->
+            <div class="lg:col-span-7 space-y-10">
+                <div class="inline-flex items-center gap-3 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full">
+                    <span class="h-2 w-2 bg-blue-600 rounded-full animate-pulse"></span>
+                    <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Constitutional Committee Election 2026</span>
+                </div>
+
+                <h1 class="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.95]">
+                    Lead the <br> 
+                    <span class="text-blue-600">Frontier.</span>
+                </h1>
+
+                <p class="text-xl text-slate-500 font-medium max-w-2xl leading-relaxed">
+                    The Constitutional Committee is the human safeguard of the Cardano Constitution. Step forward to represent the ecosystem, define our governance, and secure your place in the 2026 Constitutional Committee Election.
+                </p>
+
+                <div class="flex flex-wrap gap-6 pt-4">
+                    <a href="register.html" class="btn-primary">
+                        Register Candidacy <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="candidates.html" class="btn-secondary">
+                        View Directory <i class="fas fa-users"></i>
+                    </a>
+                </div>
+
+                <div class="pt-12 flex items-center gap-8">
+                    <div class="flex -space-x-4">
+                        <div class="h-12 w-12 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center shadow-md"><i class="fas fa-user text-slate-400 text-xs"></i></div>
+                        <div class="h-12 w-12 rounded-full border-4 border-white bg-blue-100 flex items-center justify-center shadow-md"><i class="fas fa-building text-blue-400 text-xs"></i></div>
+                        <div class="h-12 w-12 rounded-full border-4 border-white bg-emerald-100 flex items-center justify-center shadow-md"><i class="fas fa-users text-emerald-400 text-xs"></i></div>
+                    </div>
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest leading-relaxed">
+                        Open for <br> <span class="text-slate-900">Individuals, Organizations, & Consortiums</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT CANDIDACY MANAGEMENT -->
+            <div id="home-recovery-container" class="lg:col-span-5 relative">
+                <div class="absolute -inset-4 bg-blue-600/5 blur-3xl rounded-full"></div>
+                <div class="glass-card p-10 md:p-14 rounded-[4rem] shadow-3xl shadow-blue-900/10 border border-white relative z-10 animate-float">
+                    
+                    <div class="flex items-center gap-8 mb-10">
+                        <div class="h-20 w-20 bg-slate-900 rounded-[2rem] flex items-center justify-center text-white shadow-2xl">
+                            <i class="fas fa-key text-3xl text-blue-500"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Already Registered?</h2>
+                            <p class="text-sm text-slate-500 font-medium">Insert your edit token to manage your candidacy.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="relative group">
+                            <i class="fas fa-terminal absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors"></i>
+                            <input type="password" id="vault-token" placeholder="Paste Secret Token..." 
+                                class="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-14 pr-6 py-6 text-sm font-bold focus:ring-16 focus:ring-blue-600/5 focus:border-blue-500 outline-none transition-all shadow-inner placeholder:text-slate-300">
+                        </div>
+                        <button onclick="accessVault()" class="w-full py-6 bg-slate-900 text-white font-black uppercase tracking-widest text-[10px] rounded-2xl shadow-xl hover:bg-black transition-all flex items-center justify-center gap-3 active:scale-95">
+                            Edit Profile
+                        </button>
+                    </div>
+
+                    <div class="mt-10 pt-10 border-t border-slate-100 flex items-center justify-between">
+                        <div class="flex gap-4 opacity-30">
+                            <i class="fas fa-fingerprint text-slate-900"></i>
+                            <i class="fas fa-user-shield text-slate-900"></i>
+                            <i class="fas fa-shield-halved text-slate-900"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full px-8 py-20 border-t border-slate-100 bg-white/30">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+                <div class="text-left">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none uppercase">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">
+                        Facilitated by <a href="https://www.intersectmbo.org/" target="_blank" class="hover:underline">Intersect</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="public/js/portal/portal-state.js"></script>
+    <script src="public/js/portal/portal-vault.js"></script>
+    <script src="public/js/portal/portal-form-engine.js"></script>
+    <script src="public/js/portal/portal-directory.js"></script>
+    <script src="public/js/portal/portal-main.js"></script>
+</body>
+</html>

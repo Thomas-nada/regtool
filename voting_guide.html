@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Guide – Election Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated to Font Awesome 6.5.1 to support the X (Twitter) logo -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- NAVIGATION -->
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <!-- Logo Container: Standardized scale across portal -->
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="hidden sm:block">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-8 pt-12 pb-32">
+        <!-- BACK NAVIGATION -->
+        <a href="resources.html" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-blue-600 mb-10 transition-colors group">
+            <i class="fas fa-chevron-left mr-3 transform group-hover:-translate-x-1 transition-transform"></i> Back to Resources Hub
+        </a>
+
+        <!-- HEADER SECTION -->
+        <header class="mb-16 text-center md:text-left">
+            <div class="inline-flex items-center gap-3 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full mb-6">
+                <span class="h-1.5 w-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-blue-600 uppercase tracking-widest">Election Phase</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-6">Voting <br> <span class="text-blue-600">Procedures.</span></h1>
+            <p class="text-lg text-slate-500 font-medium max-w-2xl leading-relaxed">Everything you need to know about participating in the secure on-chain voting process and casting your ballot for the Constitutional Committee.</p>
+        </header>
+
+        <!-- Placeholder Content: Procedures Under Development -->
+        <div class="glass-card rounded-[3.5rem] p-12 md:p-24 text-center shadow-3xl shadow-blue-900/5 animate-fade-in">
+            <div class="h-24 w-24 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-10 text-4xl shadow-inner">
+                <i class="fas fa-hourglass-half animate-pulse"></i>
+            </div>
+            <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">Procedures Under Development</h2>
+            <p class="text-slate-500 max-w-lg mx-auto leading-relaxed mb-12 font-medium">
+                The technical protocols and voting interface for the CC Election are currently being finalized by the election authority to ensure maximum security and transparency.
+            </p>
+            
+            <div class="bg-blue-50/50 border border-blue-100 rounded-[2rem] p-8 max-w-md mx-auto">
+                <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest mb-3">Notice</p>
+                <p class="text-sm text-blue-800 font-bold leading-relaxed">
+                    A comprehensive walkthrough of the voting platform will be published here as soon as the active phase commences.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full px-8 py-16 border-t border-slate-100 bg-white/30 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <!-- Footer Branding: Matches the standardized Portal look -->
+            <div class="flex items-center gap-4">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+                <div class="text-left">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">
+                        Facilitated by <a href="https://www.intersectmbo.org/" target="_blank" class="hover:underline">Intersect</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

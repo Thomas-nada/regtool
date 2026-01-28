@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Roadmap – Election Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Updated to Font Awesome 6.5.1 to support the X (Twitter) logo -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .track-section { display: none; }
+        .track-section.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .step-bubble { @apply h-10 w-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0 shadow-lg shadow-blue-200; }
+        .checklist-item { @apply flex items-start gap-5 p-6 bg-white/50 rounded-3xl border border-slate-100 transition-all hover:bg-white hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/50; }
+        
+        .prep-card { 
+            @apply relative overflow-hidden bg-white/5 border border-white/10 rounded-3xl p-6 transition-all duration-300;
+            backdrop-filter: blur(8px);
+        }
+        .prep-card:hover {
+            @apply bg-white/10 border-white/20 -translate-y-1;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.3);
+        }
+        .prep-icon-bg {
+            @apply h-12 w-12 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl mb-4;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- NAVIGATION -->
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="hidden sm:block">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-8 pt-12 pb-32">
+        <!-- BACK NAVIGATION -->
+        <a href="resources.html" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-blue-600 mb-10 transition-colors group">
+            <i class="fas fa-chevron-left mr-3 transform group-hover:-translate-x-1 transition-transform"></i> Back to Resources Hub
+        </a>
+
+        <!-- HEADER SECTION -->
+        <header class="mb-16 text-center md:text-left">
+            <div class="inline-flex items-center gap-3 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full mb-6">
+                <span class="h-1.5 w-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-blue-600 uppercase tracking-widest">Guide</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-6">Registration <br> <span class="text-blue-600">Guide.</span></h1>
+        </header>
+
+        <!-- Pre-flight Checklist Section -->
+        <section class="mb-16 bg-slate-900 rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 h-64 w-64 bg-blue-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 h-64 w-64 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="flex items-center justify-between mb-10 text-center md:text-left">
+                    <div>
+                        <h2 class="text-3xl font-black tracking-tight flex items-center justify-center md:justify-start gap-3">
+                            <span class="text-blue-500"><i class="fas fa-layer-group"></i></span> What do you need?
+                        </h2>
+                        <p class="text-slate-400 mt-2 font-medium"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Item 1 -->
+                    <div class="prep-card group">
+                        <div class="prep-icon-bg group-hover:bg-blue-500/30 group-hover:text-blue-300 transition-colors">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 tracking-tight">Cold Credential Hash</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-medium">Add text here</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="prep-card group">
+                        <div class="prep-icon-bg group-hover:bg-blue-500/30 group-hover:text-blue-300 transition-colors">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 tracking-tight">DRep & Stake IDs</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-medium">If you are a DRep or SPO, you can disclose your ID in your candidate profile</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="prep-card group">
+                        <div class="prep-icon-bg group-hover:bg-blue-500/30 group-hover:text-blue-300 transition-colors">
+                            <i class="fas fa-file-signature"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 tracking-tight">Candidate bio</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-medium">A bio and motivation statement. Draft these in a document before pasting them into the form or write them directly.</p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="prep-card group">
+                        <div class="prep-icon-bg group-hover:bg-blue-500/30 group-hover:text-blue-300 transition-colors">
+                            <i class="fas fa-at"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2 tracking-tight">Social media profile(s)</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-medium">A link or handle to your social media profiles (X, LinkedIn, Telegram, Discord, GitHub or website).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Track Selector -->
+        <div class="text-center mb-10">
+            <h3 class="text-2xl font-black text-slate-900 mb-8 tracking-tight">Step 1: Choose Your Candidacy Track</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button onclick="switchTrack('individual')" id="btn-individual" class="track-btn p-10 bg-white/50 border border-slate-100 rounded-[3rem] text-center transition-all hover:border-blue-400 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/5 group">
+                    <div class="h-20 w-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-inner">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="block font-black text-slate-900 text-xl tracking-tight">Individual</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 block">Single person</span>
+                </button>
+                <button onclick="switchTrack('organisation')" id="btn-organisation" class="track-btn p-10 bg-white/50 border border-slate-100 rounded-[3rem] text-center transition-all hover:border-blue-400 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/5 group">
+                    <div class="h-20 w-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-inner">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <span class="block font-black text-slate-900 text-xl tracking-tight">Organisation</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 block">Entity / Institution</span>
+                </button>
+                <button onclick="switchTrack('consortium')" id="btn-consortium" class="track-btn p-10 bg-white/50 border border-slate-100 rounded-[3rem] text-center transition-all hover:border-blue-400 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/5 group">
+                    <div class="h-20 w-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-inner">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span class="block font-black text-slate-900 text-xl tracking-tight">Consortium</span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 block">Group of individuals or entities</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="track-content-container" class="min-h-[400px]">
+            <!-- Individual Track -->
+            <section id="track-individual" class="track-section space-y-8">
+                <div class="glass-card rounded-[3.5rem] p-10 md:p-14 shadow-3xl shadow-blue-900/5">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-blue-600 rounded-full"></div>
+                        <h2 class="text-3xl font-black text-slate-900 tracking-tight">Individual Roadmap</h2>
+                    </div>
+                    <p class="text-slate-500 mb-12 font-medium text-lg leading-relaxed">A streamlined process for subject-matter experts standing in a personal capacity.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="checklist-item">
+                            <div class="step-bubble">1</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Identity & Contact</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Provide your full name, a valid email for verification, and select your primary region.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="step-bubble">2</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Governance Audit</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Enter your DRep and Stake IDs to link your candidacy to your existing contributions.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="step-bubble">3</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Platform Statement</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Submit your bio and detailed motivation. This content will be public in the Directory.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="step-bubble">4</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Final Verification</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Paste your Cold Credential Hash to anchor your submission on the blockchain level.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Organisation Track -->
+            <section id="track-organisation" class="track-section space-y-8">
+                <div class="glass-card rounded-[3.5rem] p-10 md:p-14 shadow-3xl shadow-blue-900/5">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-blue-600 rounded-full"></div>
+                        <h2 class="text-3xl font-black text-slate-900 tracking-tight">Organisation Roadmap</h2>
+                    </div>
+                    <p class="text-slate-500 mb-12 font-medium text-lg leading-relaxed">For legal entities, development groups, and established community institutions.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="checklist-item">
+                            <div class="step-bubble">1</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Entity Details</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Enter the official Organisation Name and designate a Lead Representative for coordination.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="step-bubble">2</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Institutional Platform</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Describe the entity's mission and motivation for CC service, highlighting stability.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="step-bubble">3</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Transparency Plan</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Explain how the organisation intends to keep its internal deliberations and votes transparent.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Consortium Track -->
+            <section id="track-consortium" class="track-section space-y-8">
+                <div class="glass-card rounded-[3.5rem] p-10 md:p-14 shadow-3xl shadow-blue-900/5">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-1 w-12 bg-blue-600 rounded-full"></div>
+                        <h2 class="text-3xl font-black text-slate-900 tracking-tight">Consortium Roadmap</h2>
+                    </div>
+                    <p class="text-slate-500 mb-12 font-medium text-lg leading-relaxed">The comprehensive track for groups pooling diverse community expertise.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="checklist-item">
+                            <div class="step-bubble">1</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Consortium Identity</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Establish the group name and lead contact point for the entire candidacy.</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="step-bubble">2</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 tracking-tight">Roster Management</h4>
+                                <p class="text-sm text-slate-600 mt-1 leading-relaxed font-medium">Add <strong>each member individually</strong> within the registration form to build the roster.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Post-Registration CTA -->
+        <section id="cta-section" class="hidden mt-16 space-y-8 animate-fadeIn">
+            <div class="bg-emerald-50 rounded-[3rem] p-8 md:p-12 border border-emerald-100 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-10 opacity-5">
+                    <i class="fas fa-shield-check text-9xl text-emerald-900"></i>
+                </div>
+                <h3 class="text-2xl font-black text-emerald-900 mb-8 tracking-tight relative z-10">Post-Submission Protocol</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-200/50">
+                        <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <i class="fas fa-search"></i> Phase 1: Audit
+                        </p>
+                        <p class="text-sm text-slate-700 leading-relaxed font-medium">The Election Authority audits your hash against on-chain data. Process typically takes 24-48 hours.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-emerald-200/50">
+                        <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <i class="fas fa-eye"></i> Phase 2: Visibility
+                        </p>
+                        <p class="text-sm text-slate-700 leading-relaxed font-medium">Once verified, your profile will automatically appear in the public Candidate Directory.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center py-10">
+                <a href="register.html" class="group bg-blue-600 px-14 py-6 rounded-[2rem] text-white font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-blue-900/20 hover:bg-blue-700 hover:-translate-y-1 active:translate-y-0 transition-all flex items-center justify-center gap-4 mx-auto w-fit">
+                    <span>Proceed to Registration</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full px-8 py-20 border-t border-slate-100 bg-white/30 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+                <div class="text-left">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">
+                        Facilitated by <a href="https://www.intersectmbo.org/" target="_blank" class="hover:underline">Intersect</a>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="public/js/portal/portal-state.js"></script>
+    <script src="public/js/portal/portal-reg-guide.js"></script>
+</body>
+</html>

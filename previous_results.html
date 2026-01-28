@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Results – Election Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .election-btn.active { @apply bg-slate-900 text-white shadow-2xl scale-105; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-blue-100 selection:text-blue-900">
+
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="text-left leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-8 pt-12 pb-32">
+        <a href="resources.html" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-blue-600 mb-10 transition-colors group">
+            <i class="fas fa-chevron-left mr-3 transform group-hover:-translate-x-1 transition-transform"></i> Back to Resources Hub
+        </a>
+
+        <header class="mb-16 text-center md:text-left">
+            <div class="inline-flex items-center gap-3 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full mb-6">
+                <span class="h-1.5 w-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-blue-600 uppercase tracking-widest">Archive</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-6">Historical <br> <span class="text-blue-600">Results.</span></h1>
+            <p class="text-lg text-slate-500 font-medium max-w-2xl leading-relaxed">Outcomes from previous Constitutional Committee elections.</p>
+        </header>
+
+        <!-- SELECTOR -->
+        <div class="flex flex-wrap gap-4 mb-16">
+            <button id="btn-main2025" onclick="loadElection('main2025')" class="election-btn px-10 py-5 rounded-[2rem] bg-white text-slate-500 font-black uppercase tracking-widest text-[11px] border border-slate-100 transition-all hover:border-blue-200">2025 General Election</button>
+            <button id="btn-snap2025" onclick="loadElection('snap2025')" class="election-btn px-10 py-5 rounded-[2rem] bg-white text-slate-500 font-black uppercase tracking-widest text-[11px] border border-slate-100 transition-all hover:border-blue-200">2025 Snap Election</button>
+        </div>
+
+        <!-- INITIAL STATE -->
+        <div id="initial-state" class="py-32 text-center glass-card rounded-[4rem]">
+            <div class="h-20 w-20 bg-slate-50 rounded-3xl flex items-center justify-center mx-auto mb-8 text-slate-200 text-3xl">
+                <i class="fas fa-box-archive"></i>
+            </div>
+            <p class="text-slate-400 font-medium">Choose an election above to view the outcomes.</p>
+        </div>
+
+        <!-- RESULTS CONTAINER -->
+        <div id="results-container" class="hidden space-y-12 animate-fadeIn">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card p-10 rounded-[3rem] shadow-xl border-blue-50">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Total Active Stake (ADA)</p>
+                    <h4 id="stat-total-stake" class="text-4xl font-black text-slate-900 tracking-tighter mono leading-none">₳ 0</h4>
+                </div>
+                <div class="glass-card p-10 rounded-[3rem] shadow-xl border-emerald-50">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Ballots Cast (DReps)</p>
+                    <h4 id="stat-total-votes" class="text-4xl font-black text-slate-900 tracking-tighter mono leading-none">0</h4>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-[3.5rem] p-10 md:p-14 shadow-3xl">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+                    <div>
+                        <h2 id="table-title" class="text-3xl font-black text-slate-900 tracking-tighter uppercase mb-2">Election Cycle</h2>
+                        <p id="election-description" class="text-slate-500 text-base font-medium leading-relaxed max-w-xl"></p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left border-b border-slate-100">
+                                <th class="px-6 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Rank</th>
+                                <th class="px-6 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Candidate</th>
+                                <th class="px-6 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Weight</th>
+                                <th class="px-6 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center">Votes</th>
+                                <th class="px-6 py-6 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Outcome</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-table-body">
+                            <!-- Data injected via PortalResults.renderTable() -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="expand-container" class="mt-12 text-center">
+                    <button id="expand-btn" onclick="toggleAllRows()" class="px-12 py-5 bg-slate-50 text-slate-900 rounded-[2rem] text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 transition-all border border-slate-100">
+                        Expand Full Results <i class="fas fa-chevron-down ml-3"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full px-8 py-16 border-t border-slate-100 bg-white/30 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="h-18 px-3 flex items-center justify-center rounded-xl bg-white/40 border border-slate-100/50">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80">
+                </div>
+                <div class="text-left leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-xl"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="public/js/portal/portal-state.js"></script>
+    <script src="public/js/portal/portal-results.js"></script>
+</body>
+</html>

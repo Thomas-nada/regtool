@@ -1,0 +1,17 @@
+{
+  "name": "cc-election-portal",
+  "version": "11.21.0",
+  "description": "Constitutional Committee Election Portal",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "helmet": "^8.0.0",
+    "express-rate-limit": "^7.5.0",
+    "cors": "^2.8.5",
+    "xss": "^1.0.15"
+  }
+}

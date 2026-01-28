@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions – Election Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.05), transparent),
+                        radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.02), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* Section Points */
+        .point-card {
+            @apply glass-card p-10 md:p-12 rounded-[3.5rem] shadow-xl border-l-[12px] border-l-rose-600 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 relative overflow-hidden;
+        }
+
+        .legal-text { @apply text-slate-600 font-medium leading-relaxed text-lg; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen hero-gradient selection:bg-rose-100 selection:text-rose-900">
+
+    <!-- NAVIGATION -->
+    <nav class="w-full px-8 py-5 sticky top-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="h-18 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50 px-3">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain">
+                </div>
+                <div class="hidden sm:block">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block leading-none">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Home</a>
+                <a href="register.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Register</a>
+                <a href="candidates.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors">Candidates</a>
+                <a href="resources.html" class="text-blue-600 border-b-2 border-blue-600 pb-1.5 text-[10px] font-black uppercase tracking-widest">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-8 pt-12 pb-32">
+        <!-- BACK NAVIGATION -->
+        <a href="resources.html" class="inline-flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-rose-600 mb-12 transition-colors group">
+            <i class="fas fa-chevron-left mr-3 transform group-hover:-translate-x-1 transition-transform"></i> Back to Resources
+        </a>
+
+        <!-- HEADER SECTION -->
+        <header class="mb-20 text-center md:text-left animate-fade-in">
+            <div class="inline-flex items-center gap-3 px-4 py-2 bg-rose-50 border border-rose-100 rounded-full mb-8">
+                <span class="h-1.5 w-1.5 bg-rose-600 rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black text-rose-600 uppercase tracking-widest">Participation Framework 2026</span>
+            </div>
+            <h1 class="text-5xl md:text-8xl font-black text-slate-900 tracking-tighter leading-none mb-6">
+                Rules & <br> <span class="text-rose-600">Guidelines.</span>
+            </h1>
+            <p class="text-xl text-slate-500 font-medium max-w-2xl leading-relaxed">Rules of engagement for all participants in the Constitutional Committee election process.</p>
+        </header>
+
+        <div class="space-y-10">
+            
+            <!-- 1. INTRODUCTION -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.1s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Introduction</h2>
+                </div>
+                <div class="legal-text">
+                    <p>Intersect is administering an election process for the Constitutional Committee (CC). This document outlines the the use of services provided by Intersect for this purpose. By taking part in this CC election process, participants indicate their acceptance of these guidelines.</p>
+                </div>
+            </section>
+
+            <!-- 2. ROLE OF INTERSECT -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.2s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-building-shield"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Role of Intersect</h2>
+                </div>
+                <div class="legal-text">
+                    <p>Intersect's role is strictly focused on providing the platform and tools necessary for conducting this CC election. Intersect does not possess ownership of, nor exercise control over the Constitutional Committee. The CC operates as an independent entity.</p>
+                </div>
+            </section>
+
+            <!-- 3. CONSTITUTIONAL FRAMEWORK -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.3s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Constitutional Framework</h2>
+                </div>
+                <div class="legal-text">
+                    <p>This election process is conducted based on the principles of the current Cardano Blockchain Ecosystem Constitution. Participants involved in this election process are expected to be acquainted with and follow the principles and guidelines detailed in the Constitution.</p>
+                </div>
+            </section>
+
+            <!-- 4. VERIFIED CREDENTIALS -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.4s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Verified Credentials</h2>
+                </div>
+                <div class="legal-text">
+                    <p>To maintain the integrity of the committee election, all candidates must provide a Verified Cold Credential Hash. Participation is contingent upon Intersect's audit of these credentials to ensure correctness.</p>
+                </div>
+            </section>
+
+            <!-- 5. SCOPE OF RESPONSIBILITY -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.5s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-hand-holding-hand"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Scope of Responsibility</h2>
+                </div>
+                <div class="legal-text">
+                    <p>Intersect does not hold responsibility for any actions, decisions, or failures to act by the CC, its members, or any participants in this election process. Furthermore, Intersect is not accountable for the outcome of this election, the operational conduct of the CC, or the execution of any decisions made by the CC.</p>
+                </div>
+            </section>
+
+            <!-- 6. ELIGIBILITY -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.6s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Eligibility & Information</h2>
+                </div>
+                <div class="legal-text">
+                    <p>The criteria determining eligibility to participate in a CC election process are established within the Cardano Blockchain Ecosystem Constitution. Participants bear the responsibility for ensuring the accuracy and completeness of the information they provide during this election process. Intersect is not accountable for any inaccuracies or omissions in information supplied by participants.</p>
+                </div>
+            </section>
+
+            <!-- 7. ELECTION ADMINISTRATION -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.7s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Election Administration</h2>
+                </div>
+                <div class="legal-text">
+                    <p>This election process will follow the procedures and rules set forth by Intersect through approval by the Civics Committee and its peer elected members, ensuring alignment with the Cardano Blockchain Ecosystem Constitution. Intersect retains the capacity to modify aspects of this election process should such changes be necessary to maintain a fair and transparent election.
+
+</p>
+                </div>
+            </section>
+
+            <!-- 8. APPLICATION INTEGRITY & COMPLIANCE -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.8s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Integrity & Compliance</h2>
+                </div>
+                <div class="legal-text space-y-4">
+                    <p>If an application does not look genuine or appears incomplete, the CC election working group will attempt to contact the applicant via email for confirmation. If contact is unsuccessful, the working group reserves the right to hide the application from the public directory (applications will not be deleted). Decisions to hide profiles will be documented and communicated publicly.</p>
+                    <p>In the event of a candidate not adhering to these guidelines, Intersect will flag the issue to the Civics Committee for their decision on the matter on a case-by-case basis. Any candidate who undergoes this review process will be contacted by Intersect to be informed about the ongoing evaluation and potential status changes.</p>
+                </div>
+            </section>
+
+            <!-- 9. PRIVACY -->
+            <section class="point-card animate-fade-in" style="animation-delay: 0.9s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Privacy & Disclosure</h2>
+                </div>
+                <div class="legal-text">
+                    <p>Through participation in this election process, applicants consent to the collection, use, and disclosure of their personal information as outlined in Intersect's privacy policy and Terms of Use. Unless indicated differently during the submission stage, any information provided by participants in relation to this election process might become publicly accessible.</p>
+                </div>
+            </section>
+
+            <!-- 10. CONTACT -->
+            <section class="point-card animate-fade-in" style="animation-delay: 1.0s">
+                <div class="flex items-center gap-5 mb-8">
+                    <div class="h-12 w-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-inner">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight uppercase">Contact</h2>
+                </div>
+                <div class="legal-text">
+                    <p>Any questions or requests for clarification regarding these guidelines or this election process may be sent to <a href="mailto:constitution@intersectmbo.org" class="text-rose-600 font-black hover:underline">constitution@intersectmbo.org</a>.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="mt-20 pt-10 border-t border-slate-200 text-center">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] italic">Last Policy Synchronization: January 24, 2026</p>
+        </div>
+    </main>
+
+    <footer class="w-full px-8 py-20 border-t border-slate-100 bg-white/30">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <div class="h-18 px-3 flex items-center justify-center rounded-xl bg-white/40 shadow-sm border border-slate-100/50">
+                    <img src="cclogo.png" alt="Portal Logo" class="h-14 w-auto object-contain opacity-80">
+                </div>
+                <div class="text-left leading-none">
+                    <span class="text-lg font-black tracking-tight text-slate-900 block">Election Portal</span>
+                    <span class="text-[8px] font-black text-blue-600 uppercase tracking-widest mt-1 block">Facilitated by Intersect</span>
+                </div>
+            </div>
+            <div class="flex gap-8">
+                <a href="https://x.com/intersectmbo" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-x-twitter text-xl"></i></a>
+                <a href="https://github.com/IntersectMBO/" target="_blank" class="text-slate-300 hover:text-slate-900 transition-colors"><i class="fab fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

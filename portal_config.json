@@ -1,0 +1,262 @@
+{
+    "isRegistrationOpen": true,
+    "isEditingOpen": true,
+    "regStart": "2026-01-24T04:39:00.000Z",
+    "regEnd": "2026-07-30T09:26:00.000Z",
+    "editStart": "2026-01-26T04:40:00.000Z",
+    "editEnd": "2026-05-27T12:06:00.000Z",
+    "lastSync": "2026-01-27T12:16:38.536Z",
+    "lastUpdated": "2026-01-18T09:51:22.750Z",
+    "isOpen": true,
+    "isEditOpen": true,
+    "questions": {
+        "Consortium": [
+            {
+                "title": "Consortium information",
+                "fields": [
+                    {
+                        "id": "q_1768839882885",
+                        "label": "Consortium Name",
+                        "name": "q1768839882885",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please enter the name of your consortium"
+                    },
+                    {
+                        "id": "q_1768840001839",
+                        "label": "Bio",
+                        "name": "q1768840001839",
+                        "type": "textarea",
+                        "required": true,
+                        "helper": "Please enter the bio of your consortium"
+                    },
+                    {
+                        "id": "q_1768840026194",
+                        "label": "Contact email ",
+                        "name": "q1768840026194",
+                        "type": "email",
+                        "required": true,
+                        "helper": "Please enter the contact email for your consortium"
+                    },
+                    {
+                        "id": "q_1768842233026",
+                        "label": "Consortium profile picture",
+                        "name": "q_1768842233026",
+                        "type": "image",
+                        "required": true,
+                        "helper": "Please upload a profile picture for your consortium"
+                    },
+                    {
+                        "id": "q_1769084144213",
+                        "label": "Cold Credential hash",
+                        "name": "q_1769084144213",
+                        "type": "text",
+                        "required": true,
+                        "helper": ""
+                    },
+                    {
+                        "id": "q_1769087245340",
+                        "label": "What type of Cold Credential hash do you have?",
+                        "name": "q_1769087245340",
+                        "type": "select",
+                        "required": true,
+                        "helper": "If you have any questions, reply to Intersect via email. ",
+                        "options": [
+                            "Key hash",
+                            "Script hash"
+                        ]
+                    }
+                ],
+                "isRoster": true,
+                "rosterLabel": "Test member"
+            },
+            {
+                "title": "Members",
+                "fields": [
+                    {
+                        "id": "q_1768840076917",
+                        "label": "Member name",
+                        "name": "q1768840076917",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please enter the name of this consortium member"
+                    },
+                    {
+                        "id": "q_1768840137033",
+                        "label": "Bio",
+                        "name": "q1768840137033",
+                        "type": "textarea",
+                        "required": true,
+                        "helper": "Please enter the bio of this consortium member"
+                    }
+                ],
+                "isRoster": true,
+                "rosterLabel": "Member information"
+            }
+        ],
+        "Individual": [
+            {
+                "title": "Information",
+                "fields": [
+                    {
+                        "id": "q_1769085576918",
+                        "label": "Name ",
+                        "name": "q_1769085576918",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please enter the name or Alias you prefer"
+                    },
+                    {
+                        "id": "q_1769085600724",
+                        "label": "Bio",
+                        "name": "q_1769085600724",
+                        "type": "textarea",
+                        "required": true,
+                        "helper": "Please provide your bio"
+                    },
+                    {
+                        "id": "q_1769085624237",
+                        "label": "Contact email ",
+                        "name": "q_1769085624237",
+                        "type": "email",
+                        "required": true,
+                        "helper": "Please enter your contact email"
+                    },
+                    {
+                        "id": "q_1769085633808",
+                        "label": "Cold Credential hash",
+                        "name": "q_1769085633808",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please insert your Cold Credential hash. You will be contacted by Intersect within the following working day with instructions on how to verify hash ownership and hash type. "
+                    },
+                    {
+                        "id": "q_1769085650496",
+                        "label": "What type of Cold Credential hash do you have?",
+                        "name": "q_1769085650496",
+                        "type": "select",
+                        "required": true,
+                        "helper": "If you have any questions, reply to Intersect via email. ",
+                        "options": [
+                            "Key hash",
+                            "Script hash"
+                        ]
+                    },
+                    {
+                        "id": "q_1769087329740",
+                        "label": "Profile picture",
+                        "name": "q_1769087329740",
+                        "type": "image",
+                        "required": true,
+                        "helper": "Please upload a profile picture"
+                    }
+                ],
+                "isRoster": false,
+                "rosterLabel": "Member"
+            }
+        ],
+        "Organisation": [
+            {
+                "title": "Organisation Information",
+                "fields": [
+                    {
+                        "id": "q_1769085297138",
+                        "label": "Name of organisation",
+                        "name": "q_1769085297138",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please enter the name of your organisation"
+                    },
+                    {
+                        "id": "q_1769085352609",
+                        "label": "Bio",
+                        "name": "q_1769085352609",
+                        "type": "textarea",
+                        "required": true,
+                        "helper": "Please provide your bio"
+                    },
+                    {
+                        "id": "q_1769085378709",
+                        "label": "Contact email ",
+                        "name": "q_1769085378709",
+                        "type": "email",
+                        "required": true,
+                        "helper": "Please enter your contact email"
+                    },
+                    {
+                        "id": "q_1769085412641",
+                        "label": "Contact person",
+                        "name": "q_1769085412641",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please provide name of contact person"
+                    },
+                    {
+                        "id": "q_1769085446677",
+                        "label": "Cold Credential hash",
+                        "name": "q_1769085446677",
+                        "type": "text",
+                        "required": true,
+                        "helper": "Please insert your Cold Credential hash. You will be contacted by Intersect within the following working day with instructions on how to verify hash ownership and hash type. "
+                    },
+                    {
+                        "id": "q_1769085459096",
+                        "label": "What type of Cold Credential hash do you have?",
+                        "name": "q_1769085459096",
+                        "type": "select",
+                        "required": true,
+                        "helper": "If you have any questions, reply to Intersect via email. ",
+                        "options": [
+                            "Key hash",
+                            "Script hash"
+                        ]
+                    },
+                    {
+                        "id": "q_1769087371029",
+                        "label": "Profile picture",
+                        "name": "q_1769087371029",
+                        "type": "image",
+                        "required": true,
+                        "helper": "Please upload a profile picture for your organisation"
+                    }
+                ],
+                "isRoster": false,
+                "rosterLabel": "Member"
+            }
+        ],
+        "Test Track": [
+            {
+                "title": "Registry Stage 1",
+                "fields": [
+                    {
+                        "label": "Field Label",
+                        "name": "q_1769176596938",
+                        "type": "textarea",
+                        "required": true,
+                        "minLength": "100",
+                        "maxLength": "2000",
+                        "helper": "Test"
+                    },
+                    {
+                        "label": "Field Label 3",
+                        "name": "q_1769176619244",
+                        "type": "text",
+                        "required": true,
+                        "regex": "DREP1"
+                    }
+                ],
+                "isRoster": false
+            }
+        ]
+    },
+    "serverUTC": "2026-01-23T17:16:22.635Z",
+    "version": "11.4-IRON-DOME",
+    "data": {
+        "isRegistrationOpen": true,
+        "isEditingOpen": true,
+        "regStart": "2026-01-24T10:25:00.000Z",
+        "regEnd": "2026-01-27T10:26:00.000Z",
+        "editStart": "2026-01-24T10:23:00.000Z",
+        "editEnd": "2026-08-28T12:06:00.000Z"
+    }
+}

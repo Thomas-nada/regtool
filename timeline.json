@@ -1,0 +1,57 @@
+[
+    {
+        "item": "Preparation Phase",
+        "who": "Intersect",
+        "startDate": "2026-01-27T00:00",
+        "endDate": "2026-04-01T00:00",
+        "dates": "2026-01-27T00:00 — 2026-04-01T00:00",
+        "status": "In Progress",
+        "description": "Initial preparation phase including technical integrations, administrative workflows, and vendor selection for voting and auditing partners.",
+        "urls": []
+    },
+    {
+        "item": "Candidate Registration Phase",
+        "who": "Intersect",
+        "startDate": "2026-04-01T00:00",
+        "endDate": "2026-04-30T00:00",
+        "dates": "2026-04-01T00:00 — 2026-04-30T00:00",
+        "status": "In Progress",
+        "description": "The Constitutional Committee candidacy registration window is open. Input fields and requirements are defined in collaboration with the Civics Committee.",
+        "urls": [
+            {
+                "label": "Intersect Knowledge base",
+                "url": "https://intersectmbo.org/governance/election-guide"
+            }
+        ]
+    },
+    {
+        "item": "Campaign Phase",
+        "who": "Intersect",
+        "startDate": "2026-05-01T00:00",
+        "endDate": "2026-05-29T21:45",
+        "dates": "2026-05-01T00:00 — 2026-05-29T21:45",
+        "status": "In Progress",
+        "description": "Formal campaign period for approved candidates to present their platforms to the community.",
+        "urls": []
+    },
+    {
+        "item": "Off-Chain Voting Phase",
+        "who": "Ekklesia",
+        "startDate": "2026-05-29T21:45",
+        "endDate": "2026-06-28T21:45",
+        "dates": "2026-05-29T21:45 — 2026-06-28T21:45",
+        "status": "In Progress",
+        "description": "Voting phase conducted via the selected voting tool followed by an independent audit.",
+        "urls": []
+    },
+    {
+        "item": "On-Chain Voting Phase",
+        "who": "Intersect",
+        "startDate": "2026-08-02T21:45",
+        "endDate": "2026-08-07T21:45",
+        "dates": "2026-08-02T21:45 — 2026-08-07T21:45",
+        "status": "In Progress",
+        "description": "On-chain validation and GA submission (Epoch 647).",
+        "urls": []
+    }
+]
