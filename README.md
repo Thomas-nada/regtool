@@ -223,5 +223,3 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - **Issues**: [GitHub Issues](https://github.com/Thomas-nada/regtool/issues)
 
 ---
-
-**Facilitated by Intersect** | Building the future of decentralized governance
