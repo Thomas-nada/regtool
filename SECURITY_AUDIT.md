@@ -438,8 +438,8 @@ The CC Election Portal demonstrates excellent security practices with a defense-
 
 | Role | Name | Date | Signature |
 |------|------|------|-----------|
-| Lead Auditor | Security Review Team | Jan 2026 | ✅ Approved |
-| Technical Review | Development Team | Jan 2026 | ✅ Approved |
+| Lead Auditor | Claude | Jan 2026 | ✅ Approved |
+| Technical Review | Claude | Jan 2026 | ✅ Approved |
 
 ---
 
