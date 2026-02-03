@@ -80,12 +80,19 @@ const PortalProfile = {
         let profilePic = null;
 
         for(let key in data) {
-            if (typeof data[key] === 'string' && data[key].startsWith('data:image')) { 
-                profilePic = data[key]; 
+            if (typeof data[key] === 'string' && data[key].startsWith('data:image')) {
+                profilePic = data[key];
                 this.renderedKeys.add(key);
-                break; 
-            } 
+                break;
+            }
         }
+
+        const avatarFallback = {
+            'Individual': `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect fill="#EFF6FF" width="120" height="120"/><circle cx="60" cy="40" r="18" fill="#BFDBFE"/><path d="M60 62 C38 62 24 78 24 96 L24 120 L96 120 L96 96 C96 78 82 62 60 62Z" fill="#BFDBFE"/></svg>`,
+            'Organisation': `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect fill="#ECFDF5" width="120" height="120"/><path d="M60 16 L92 34 L92 68 C92 90 60 106 60 106 C60 106 28 90 28 68 L28 34 Z" fill="#86EFAC"/><path d="M60 28 L82 40 L82 66 C82 82 60 94 60 94 C60 94 38 82 38 66 L38 40 Z" fill="#ECFDF5"/><path d="M54 60 L58 64 L68 52" stroke="#86EFAC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`,
+            'Consortium': `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect fill="#EEF2FF" width="120" height="120"/><circle cx="32" cy="48" r="13" fill="#C7D2FE"/><path d="M32 65 C18 65 8 76 8 88 L8 120 L56 120 L56 88 C56 76 46 65 32 65Z" fill="#C7D2FE"/><circle cx="88" cy="48" r="13" fill="#C7D2FE"/><path d="M88 65 C74 65 64 76 64 88 L64 120 L112 120 L112 88 C112 76 102 65 88 65Z" fill="#C7D2FE"/><circle cx="60" cy="38" r="16" fill="#A5B4FC"/><path d="M60 58 C42 58 30 72 30 88 L30 120 L90 120 L90 88 C90 72 78 58 60 58Z" fill="#A5B4FC"/></svg>`
+        };
+        const fallbackSvg = avatarFallback[record.applicationType] || avatarFallback['Individual'];
 
         const previewBanner = this.isPreviewMode 
             ? `<div class="absolute top-0 right-0 px-6 py-1.5 bg-blue-600 text-white font-black text-[7px] uppercase tracking-[0.4em] rotate-45 translate-x-[25px] translate-y-[10px] shadow-xl z-20">Preview Mode</div>`
@@ -96,9 +103,9 @@ const PortalProfile = {
             <div class="flex flex-col items-start relative z-10 text-left">
                 <div class="relative mb-8 group cursor-zoom-in" onclick="PortalProfile.openImageModal('${profilePic}')">
                     <div class="h-28 w-28 md:h-40 md:w-40 rounded-[2.5rem] bg-white border-4 border-white shadow-xl overflow-hidden relative transition-all duration-500 group-hover:scale-105">
-                        ${profilePic ? 
-                            `<img src="${profilePic}" class="h-full w-full object-cover animate-fadeIn">` : 
-                            `<div class="h-full w-full bg-slate-50 flex items-center justify-center text-slate-200 text-5xl"><i class="fas fa-shield-halved"></i></div>`
+                        ${profilePic ?
+                            `<img src="${profilePic}" class="h-full w-full object-cover animate-fadeIn">` :
+                            `<img src="data:image/svg+xml,${encodeURIComponent(fallbackSvg)}" class="h-full w-full object-cover animate-fadeIn">`
                         }
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <i class="fas fa-magnifying-glass-plus text-white text-2xl"></i>
